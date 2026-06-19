@@ -1,0 +1,15 @@
+__pycache__/
+*.pyc
+*.pkl
+*.h5
+*.model
+*.bin
+
+venv/
+.env
+
+# Ignore heavy or unnecessary data
+data/candidates.jsonl
+data/*.jsonl
+
+output/
