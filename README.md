@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 🚀 AI-Powered Candidate Ranking System (INDIA.RUNS Hackathon)
 
 ---
@@ -144,3 +145,7 @@ If you want to **beat other teams easily**, I can help you add:
 
 Just say:
 👉 **“dashboard”**
+=======
+# india-runs-ai-ranking
+AI-powered candidate ranking system for the INDIA.RUNS Data &amp; AI Challenge. Uses semantic matching and behavioral signals to intelligently rank candidates beyond keyword matching.
+>>>>>>> 4b8535d8b67de76a920174ffa3dded207fd449d8
