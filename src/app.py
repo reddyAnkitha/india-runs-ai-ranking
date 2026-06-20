@@ -9,14 +9,14 @@ st.set_page_config(page_title="AI Candidate Ranking System", layout="wide")
 st.title("🚀 AI-Powered Candidate Ranking System")
 st.write("Hybrid AI model using Semantic + Skill + Experience scoring")
 
-# Load model
+# Load model (cache recommended later)
 model = SentenceTransformer("all-MiniLM-L6-v2")
 
-# Load data
-with open(r"E:\india-runs-ai-ranking\data\job_description.txt", "r", encoding="utf-8") as f:
+# FIXED PATHS (IMPORTANT)
+with open("data/job_description.txt", "r", encoding="utf-8") as f:
     jd_text = f.read()
 
-with open(r"E:\india-runs-ai-ranking\data\sample_candidates.json", "r", encoding="utf-8") as f:
+with open("data/sample_candidates.json", "r", encoding="utf-8") as f:
     candidates = json.load(f)
 
 jd_emb = model.encode([jd_text])
