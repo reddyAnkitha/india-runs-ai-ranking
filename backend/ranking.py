@@ -1,30 +1,41 @@
-import json
-from sentence_transformers import SentenceTransformer
-from sklearn.metrics.pairwise import cosine_similarity
+import os
+from sentence_transformers import SentenceTransformer, util
 
-model = SentenceTransformer("sentence-transformers/paraphrase-MiniLM-L3-v2")
+os.environ["TOKENIZERS_PARALLELISM"] = "false"
 
-def rank_candidates(job_description, candidates):
+# Load model ONCE (important fix)
+model = SentenceTransformer("all-MiniLM-L6-v2")
 
-    jd_embedding = model.encode([job_description])
+# Sample candidate dataset
+candidates = [
+    {"id": "CAND_0000001", "skills": "python fastapi sql ml"},
+    {"id": "CAND_0000002", "skills": "java spring boot backend"},
+    {"id": "CAND_0000003", "skills": "python ml data science ai"},
+    {"id": "CAND_0000004", "skills": "react frontend javascript html"},
+    {"id": "CAND_0000005", "skills": "python django flask api"},
+    {"id": "CAND_0000006", "skills": "aws devops docker kubernetes"},
+]
+
+
+def rank_candidates(job_description: str):
+
+    job_embedding = model.encode(job_description, convert_to_tensor=True)
 
     results = []
 
     for c in candidates:
-        profile = c.get("profile", {})
+        cand_embedding = model.encode(c["skills"], convert_to_tensor=True)
 
-        text = profile.get("headline", "") + " " + profile.get("summary", "")
-
-        cand_embedding = model.encode([text])
-
-        score = cosine_similarity(jd_embedding, cand_embedding)[0][0]
+        score = util.cos_sim(job_embedding, cand_embedding).item()
+        match_percentage = round(score * 100, 2)
 
         results.append({
-            "candidate_id": c["candidate_id"],
-            "score": round(float(score), 3),
-            "match_percentage": round(float(score) * 100, 2)
+            "candidate_id": c["id"],
+            "score": round(score, 3),
+            "match_percentage": match_percentage
         })
 
-    results.sort(key=lambda x: x["score"], reverse=True)
+    # sort
+    results = sorted(results, key=lambda x: x["score"], reverse=True)
 
     return results
