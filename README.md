@@ -647,29 +647,33 @@ The Streamlit dashboard provides interactive visual analytics including:
 
 # 📸 Screenshots
 
-> *(Replace the placeholders below with actual screenshots from your application.)*
-
 ## 🖥️ Streamlit Dashboard
 
-```
-docs/images/dashboard.png
-```
+![Streamlit Dashboard](docs/images/dashboard.png)
 
 ---
 
 ## 📊 Candidate Ranking
 
-```
-docs/images/ranking_table.png
-```
+![Candidate Ranking](docs/images/ranking_table.png)
 
 ---
 
 ## 📈 Ranking Chart
 
-```
-docs/images/chart.png
-```
+![Ranking Chart](docs/images/chart.png)
+
+---
+
+## 📚 FastAPI Swagger Documentation
+
+![Swagger UI](docs/images/swagger.png)
+
+---
+
+## 📄 CSV Output
+
+![CSV Output](docs/images/csv_output.png)
 
 ---
 
