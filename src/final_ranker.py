@@ -1,4 +1,5 @@
 import json
+import pandas as pd
 
 # Load candidates
 with open(
@@ -7,7 +8,6 @@ with open(
     encoding="utf-8"
 ) as f:
     candidates = json.load(f)
-
 
 required_skills = [
     "Python",
@@ -22,7 +22,6 @@ results = []
 
 for candidate in candidates:
 
-    # Candidate skills
     candidate_skills = [
         skill["name"]
         for skill in candidate["skills"]
@@ -35,21 +34,16 @@ for candidate in candidates:
 
     skill_score = len(matched) * 10
 
-    # Experience
     exp_score = candidate["profile"]["years_of_experience"]
 
     signals = candidate["redrob_signals"]
 
-    # Open to work
     open_score = 10 if signals["open_to_work_flag"] else 0
 
-    # Profile completeness
     profile_score = signals["profile_completeness_score"] / 10
 
-    # Recruiter response rate
     response_score = signals["recruiter_response_rate"] * 20
 
-    # Github activity
     github_score = signals["github_activity_score"]
 
     final_score = (
@@ -63,17 +57,30 @@ for candidate in candidates:
 
     results.append({
         "candidate_id": candidate["candidate_id"],
-        "score": round(final_score,2),
-        "matched_skills": matched
+        "score": round(final_score, 2),
+        "matched_skills": ", ".join(matched)
     })
 
-
+# Sort descending
 results.sort(
     key=lambda x: x["score"],
     reverse=True
 )
 
+# Top 10
+top10 = results[:10]
+
+# Save CSV
+df = pd.DataFrame(top10)
+
+df.to_csv(
+    "hackathon_final_rankings.csv",
+    index=False
+)
+
 print("\nTOP 10 CANDIDATES\n")
 
-for r in results[:10]:
+for r in top10:
     print(r)
+
+print("\nCSV created successfully!")
