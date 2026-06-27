@@ -677,13 +677,6 @@ The Streamlit dashboard provides interactive visual analytics including:
 
 ---
 
-## 📚 FastAPI Swagger Documentation
-
-```
-docs/images/swagger.png
-```
-
----
 
 # 🌟 Repository Highlights
 
