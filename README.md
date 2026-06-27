@@ -655,7 +655,7 @@ The Streamlit dashboard provides interactive visual analytics including:
 
 ## 📊 Candidate Ranking
 
-![Candidate Ranking](docs/images/ranking_table.png)
+![Candidate Ranking](docs/images/ranking.png)
 
 ---
 
@@ -667,7 +667,7 @@ The Streamlit dashboard provides interactive visual analytics including:
 
 ## 📚 FastAPI Swagger Documentation
 
-![Swagger UI](docs/images/swagger.png)
+![Swagger UI](docs/images/Swagger.png)
 
 ---
 
